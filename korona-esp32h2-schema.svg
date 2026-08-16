@@ -1,0 +1,196 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1750 1145" font-family="Arial, Helvetica, sans-serif">
+
+  <!-- ==================== ФОН ==================== -->
+  <rect x="0" y="0" width="1750" height="1145" fill="#0d1117"/>
+
+  <!-- ==================== ЗАГОЛОВОК ==================== -->
+  <text x="875" y="42" text-anchor="middle" font-size="27" font-weight="bold" fill="#f2f2f2">Проект «Корона»: ESP32-H2 + ARGB-лента через Zigbee</text>
+  <text x="875" y="68" text-anchor="middle" font-size="15" fill="#9aa4b2">Родная плата контроллера ленты выкидывается. ESP32 управляет лентой напрямую, в Home Assistant видна как одно устройство «Корона»</text>
+
+  <!-- ==================== ШИНЫ ПИТАНИЯ ==================== -->
+  <line x1="60" y1="200" x2="1680" y2="200" stroke="#e63946" stroke-width="6"/>
+  <rect x="700" y="164" width="350" height="26" rx="5" fill="#2a0f12"/>
+  <text x="875" y="182" text-anchor="middle" font-size="15" fill="#ff8a93" font-weight="bold">ШИНА +12V (общая линия питания)</text>
+
+  <line x1="60" y1="940" x2="1680" y2="940" stroke="#8d99ae" stroke-width="6"/>
+  <rect x="640" y="904" width="470" height="26" rx="5" fill="#12151c"/>
+  <text x="875" y="922" text-anchor="middle" font-size="15" fill="#c3cbd8" font-weight="bold">ШИНА GND (общий провод / «земля» для всех устройств)</text>
+
+  <!-- ==================== ПРОВОДА (рисуем ДО блоков, чтобы блоки перекрывали концы) ==================== -->
+
+  <!-- PSU stubs -->
+  <line x1="110" y1="200" x2="110" y2="360" stroke="#e63946" stroke-width="4"/>
+  <line x1="200" y1="490" x2="200" y2="940" stroke="#8d99ae" stroke-width="3"/>
+  <circle cx="110" cy="200" r="4" fill="#e63946"/>
+  <circle cx="200" cy="940" r="4" fill="#8d99ae"/>
+
+  <!-- DC-DC stubs -->
+  <line x1="360" y1="200" x2="360" y2="360" stroke="#e63946" stroke-width="4"/>
+  <line x1="470" y1="490" x2="470" y2="940" stroke="#8d99ae" stroke-width="3"/>
+  <circle cx="360" cy="200" r="4" fill="#e63946"/>
+  <circle cx="470" cy="940" r="4" fill="#8d99ae"/>
+
+  <!-- DC-DC -> ESP32 (+5V) -->
+  <line x1="520" y1="400" x2="580" y2="400" stroke="#f4a261" stroke-width="4"/>
+  <circle cx="550" cy="400" r="4" fill="#f4a261"/>
+
+  <!-- +5V branch up and over to level shifter VCC -->
+  <line x1="550" y1="400" x2="550" y2="250" stroke="#f4a261" stroke-width="3"/>
+  <line x1="550" y1="250" x2="990" y2="250" stroke="#f4a261" stroke-width="3"/>
+  <line x1="990" y1="250" x2="990" y2="340" stroke="#f4a261" stroke-width="3"/>
+
+  <!-- ESP32 GND -->
+  <line x1="650" y1="510" x2="650" y2="940" stroke="#8d99ae" stroke-width="3"/>
+  <circle cx="650" cy="940" r="4" fill="#8d99ae"/>
+
+  <!-- ESP32 GPIO -> resistor -->
+  <line x1="790" y1="460" x2="805" y2="460" stroke="#4caf50" stroke-width="4"/>
+  <!-- resistor -> level shifter IN -->
+  <line x1="875" y1="460" x2="900" y2="460" stroke="#4caf50" stroke-width="4"/>
+
+  <!-- Level shifter GND -->
+  <line x1="990" y1="510" x2="990" y2="940" stroke="#8d99ae" stroke-width="3"/>
+  <circle cx="990" cy="940" r="4" fill="#8d99ae"/>
+
+  <!-- Level shifter OUT -> strip DATA -->
+  <line x1="1110" y1="460" x2="1250" y2="460" stroke="#4caf50" stroke-width="4"/>
+
+  <!-- Strip stubs -->
+  <line x1="1330" y1="200" x2="1330" y2="310" stroke="#e63946" stroke-width="4"/>
+  <line x1="1330" y1="570" x2="1330" y2="940" stroke="#8d99ae" stroke-width="3"/>
+  <circle cx="1330" cy="200" r="4" fill="#e63946"/>
+  <circle cx="1330" cy="940" r="4" fill="#8d99ae"/>
+
+  <!-- Capacitor stubs -->
+  <line x1="1580" y1="200" x2="1580" y2="390" stroke="#e63946" stroke-width="4"/>
+  <line x1="1580" y1="500" x2="1580" y2="940" stroke="#8d99ae" stroke-width="3"/>
+  <circle cx="1580" cy="200" r="4" fill="#e63946"/>
+  <circle cx="1580" cy="940" r="4" fill="#8d99ae"/>
+
+  <!-- ==================== БЛОКИ ==================== -->
+
+  <!-- 1. Блок питания (уже есть) -->
+  <rect x="60" y="360" width="190" height="130" rx="12" fill="#1b2a4a" stroke="#7a8bb5" stroke-width="2" stroke-dasharray="8,5"/>
+  <text x="155" y="410" text-anchor="middle" font-size="16" fill="#eaeaea" font-weight="bold">Блок питания</text>
+  <text x="155" y="432" text-anchor="middle" font-size="16" fill="#eaeaea" font-weight="bold">12V</text>
+  <text x="155" y="456" text-anchor="middle" font-size="12" fill="#9aa4b2">(уже есть, общий</text>
+  <text x="155" y="472" text-anchor="middle" font-size="12" fill="#9aa4b2">с магнитолой)</text>
+
+  <!-- 2. DC-DC -->
+  <rect x="310" y="360" width="210" height="130" rx="12" fill="#1b3a2e" stroke="#4caf7d" stroke-width="2"/>
+  <text x="415" y="405" text-anchor="middle" font-size="16" fill="#eaeaea" font-weight="bold">DC-DC step-down</text>
+  <text x="415" y="428" text-anchor="middle" font-size="15" fill="#c9f2dc">12V → 5V</text>
+  <text x="415" y="452" text-anchor="middle" font-size="12" fill="#9aa4b2">(например MP1584</text>
+  <text x="415" y="468" text-anchor="middle" font-size="12" fill="#9aa4b2">или LM2596)</text>
+
+  <!-- 3. ESP32-H2 -->
+  <rect x="580" y="340" width="210" height="170" rx="12" fill="#2a1b3a" stroke="#9b6bd6" stroke-width="2"/>
+  <text x="685" y="400" text-anchor="middle" font-size="17" fill="#eaeaea" font-weight="bold">ESP32-H2</text>
+  <text x="685" y="422" text-anchor="middle" font-size="16" fill="#eaeaea" font-weight="bold">SuperMini</text>
+  <text x="685" y="450" text-anchor="middle" font-size="12" fill="#c9b8e8">прошивка: esp-zigbee-sdk</text>
+  <text x="685" y="468" text-anchor="middle" font-size="12" fill="#c9b8e8">(пресеты цветов внутри)</text>
+  <text x="685" y="490" text-anchor="middle" font-size="11" fill="#9aa4b2">GPIO2 → DATA (3.3V)</text>
+
+  <!-- 4. Резистор -->
+  <rect x="805" y="440" width="70" height="40" rx="6" fill="#4a3a14" stroke="#d4a017" stroke-width="2"/>
+  <text x="840" y="457" text-anchor="middle" font-size="11" fill="#f0d98a" font-weight="bold">R</text>
+  <text x="840" y="472" text-anchor="middle" font-size="10" fill="#f0d98a">330 Ом</text>
+
+  <!-- 5. Level shifter -->
+  <rect x="900" y="340" width="210" height="170" rx="12" fill="#3a2a1b" stroke="#d69b4a" stroke-width="2"/>
+  <text x="1005" y="380" text-anchor="middle" font-size="15" fill="#eaeaea" font-weight="bold">Преобразователь</text>
+  <text x="1005" y="400" text-anchor="middle" font-size="15" fill="#eaeaea" font-weight="bold">уровня 3.3V→5V</text>
+  <text x="1005" y="424" text-anchor="middle" font-size="12" fill="#f0d0a0">74AHCT125</text>
+  <text x="1005" y="448" text-anchor="middle" font-size="11" fill="#9aa4b2">(если лента не</text>
+  <text x="1005" y="463" text-anchor="middle" font-size="11" fill="#9aa4b2">видит 3.3V сигнал —</text>
+  <text x="1005" y="478" text-anchor="middle" font-size="11" fill="#9aa4b2">без него тоже пробуй)</text>
+
+  <!-- 6. ARGB лента -->
+  <rect x="1250" y="310" width="220" height="260" rx="12" fill="#3a1b2a" stroke="#e63959" stroke-width="2"/>
+  <text x="1360" y="355" text-anchor="middle" font-size="17" fill="#eaeaea" font-weight="bold">ARGB-лента</text>
+  <text x="1360" y="378" text-anchor="middle" font-size="17" fill="#eaeaea" font-weight="bold">«Корона»</text>
+  <text x="1360" y="402" text-anchor="middle" font-size="12" fill="#f2b8c6">5 м, 12V</text>
+  <text x="1360" y="420" text-anchor="middle" font-size="11" fill="#9aa4b2">(6-7 LED/10см,</text>
+  <text x="1360" y="435" text-anchor="middle" font-size="11" fill="#9aa4b2">WS2811/SK6812-подобная)</text>
+  <text x="1360" y="530" text-anchor="middle" font-size="11" fill="#9aa4b2">родная плата-контроллер</text>
+  <text x="1360" y="545" text-anchor="middle" font-size="11" fill="#9aa4b2">снимается и не используется</text>
+
+  <!-- 7. Конденсатор -->
+  <rect x="1520" y="390" width="120" height="110" rx="10" fill="#122a3a" stroke="#5ab0d6" stroke-width="2"/>
+  <text x="1580" y="425" text-anchor="middle" font-size="13" fill="#eaeaea" font-weight="bold">C 1000 мкФ</text>
+  <text x="1580" y="443" text-anchor="middle" font-size="12" fill="#a9d8ec">16V</text>
+  <text x="1580" y="463" text-anchor="middle" font-size="10" fill="#9aa4b2">ставится физически</text>
+  <text x="1580" y="477" text-anchor="middle" font-size="10" fill="#9aa4b2">у самой ленты</text>
+
+  <!-- ==================== ПОДПИСИ У ПРОВОДОВ (плавающие, с фоном) ==================== -->
+
+  <!-- PSU -->
+  <rect x="80" y="266" width="60" height="20" rx="3" fill="#000000" fill-opacity="0.55"/>
+  <text x="110" y="281" text-anchor="middle" font-size="13" fill="#ff9ba3">+12V</text>
+  <rect x="170" y="702" width="60" height="20" rx="3" fill="#000000" fill-opacity="0.55"/>
+  <text x="200" y="717" text-anchor="middle" font-size="13" fill="#c3cbd8">GND</text>
+
+  <!-- DC-DC -->
+  <rect x="330" y="266" width="60" height="20" rx="3" fill="#000000" fill-opacity="0.55"/>
+  <text x="360" y="281" text-anchor="middle" font-size="13" fill="#ff9ba3">+12V</text>
+  <rect x="440" y="702" width="60" height="20" rx="3" fill="#000000" fill-opacity="0.55"/>
+  <text x="470" y="717" text-anchor="middle" font-size="13" fill="#c3cbd8">GND</text>
+
+  <!-- +5V line label -->
+  <rect x="578" y="312" width="66" height="20" rx="3" fill="#000000" fill-opacity="0.55"/>
+  <text x="611" y="327" text-anchor="middle" font-size="13" fill="#ffc48a">+5V</text>
+
+  <!-- ESP32 GND -->
+  <rect x="620" y="712" width="60" height="20" rx="3" fill="#000000" fill-opacity="0.55"/>
+  <text x="650" y="727" text-anchor="middle" font-size="13" fill="#c3cbd8">GND</text>
+
+  <!-- Level shifter GND -->
+  <rect x="960" y="712" width="60" height="20" rx="3" fill="#000000" fill-opacity="0.55"/>
+  <text x="990" y="727" text-anchor="middle" font-size="13" fill="#c3cbd8">GND</text>
+
+  <!-- DATA between shifter and strip -->
+  <rect x="1113" y="424" width="134" height="34" rx="4" fill="#000000" fill-opacity="0.6"/>
+  <text x="1180" y="438" text-anchor="middle" font-size="12" fill="#9be89f">DATA, 5V</text>
+  <text x="1180" y="453" text-anchor="middle" font-size="11" fill="#9aa4b2">(зелёный провод ленты)</text>
+
+  <!-- Strip +12V -->
+  <rect x="1272" y="222" width="116" height="34" rx="4" fill="#000000" fill-opacity="0.6"/>
+  <text x="1330" y="236" text-anchor="middle" font-size="12" fill="#ff9ba3">+12V</text>
+  <text x="1330" y="251" text-anchor="middle" font-size="11" fill="#9aa4b2">(красный провод)</text>
+
+  <!-- Strip GND -->
+  <rect x="1272" y="712" width="116" height="34" rx="4" fill="#000000" fill-opacity="0.6"/>
+  <text x="1330" y="726" text-anchor="middle" font-size="12" fill="#c3cbd8">GND</text>
+  <text x="1330" y="741" text-anchor="middle" font-size="11" fill="#9aa4b2">(белый провод)</text>
+
+  <!-- Capacitor -->
+  <rect x="1550" y="266" width="60" height="20" rx="3" fill="#000000" fill-opacity="0.55"/>
+  <text x="1580" y="281" text-anchor="middle" font-size="13" fill="#ff9ba3">+12V</text>
+  <rect x="1550" y="702" width="60" height="20" rx="3" fill="#000000" fill-opacity="0.55"/>
+  <text x="1580" y="717" text-anchor="middle" font-size="13" fill="#c3cbd8">GND</text>
+
+  <!-- ==================== ЛЕГЕНДА ==================== -->
+  <rect x="60" y="965" width="1620" height="150" rx="10" fill="#12151c" stroke="#2a2f3a" stroke-width="1"/>
+
+  <line x1="90" y1="995" x2="130" y2="995" stroke="#e63946" stroke-width="5"/>
+  <text x="140" y="1000" font-size="14" fill="#eaeaea">+12V — питание ленты и БП</text>
+
+  <line x1="500" y1="995" x2="540" y2="995" stroke="#f4a261" stroke-width="5"/>
+  <text x="550" y="1000" font-size="14" fill="#eaeaea">+5V — питание ESP32 и логики</text>
+
+  <line x1="960" y1="995" x2="1000" y2="995" stroke="#8d99ae" stroke-width="5"/>
+  <text x="1010" y="1000" font-size="14" fill="#eaeaea">GND — общий провод (обязателен везде)</text>
+
+  <line x1="1400" y1="995" x2="1440" y2="995" stroke="#4caf50" stroke-width="5"/>
+  <text x="1450" y="1000" font-size="14" fill="#eaeaea">DATA — сигнал</text>
+
+  <rect x="90" y="1025" width="26" height="18" rx="4" fill="#1b2a4a" stroke="#7a8bb5" stroke-width="2" stroke-dasharray="4,3"/>
+  <text x="126" y="1039" font-size="13" fill="#eaeaea">— уже есть у тебя</text>
+
+  <rect x="330" y="1025" width="26" height="18" rx="4" fill="#2a1b3a" stroke="#9b6bd6" stroke-width="2"/>
+  <text x="366" y="1039" font-size="13" fill="#eaeaea">— нужно купить</text>
+
+  <text x="90" y="1075" font-size="13" fill="#9aa4b2">Резистор и преобразователь уровня — сначала попробуй без резистора и без шифтера (часто и так работает на коротких проводах).</text>
+  <text x="90" y="1093" font-size="13" fill="#9aa4b2">Если лента мигает / первый пиксель врёт цвет — добавляй резистор 330 Ом, затем шифтер уровня.</text>
+
+</svg>
