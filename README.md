@@ -14,8 +14,24 @@ korona/
 ├── platformio.ini
 ├── zigbee.csv                  ← рядом с platformio.ini, не в src
 ├── src/main.cpp
-└── z2m_external_converter/korona.js
+├── z2m_external_converter/korona.js
+└── Photo/                      ← фото переделки
 ```
+
+## Фото
+
+| Файл | Что на нём |
+|---|---|
+| `Photo/01_plata_verh_provoda.jpg` | Родная плата контроллера (JZ-3016FK3R24R22-SPI-V10), сверху: контакты V+ / SDATA / GND / IR / GND / 3V3 и подпаянные провода кнопок |
+| `Photo/02_plata_niz_knopki.jpg` | Та же плата снизу: три кнопки |
+| `Photo/03_dcdc_mini360_niz.jpg` | DC-DC понижайка DSN-MINI-360, снизу (IN+/IN-/OUT+/OUT-) |
+| `Photo/04_dcdc_mini360_verh.jpg` | DSN-MINI-360 сверху (подстроечный резистор для выставления 5 В) |
+| `Photo/05_sborka_v_korpuse_1.jpg` | Сборка в корпусе: плата ESP32-H2 поверх родной платы |
+| `Photo/06_sborka_v_korpuse_2.jpg` | То же, другой ракурс |
+| `Photo/07_korpus_naklejka.jpg` | Корпус LEDBLE, наклейка (DC 12 V) |
+| `Photo/08_korpus_szadi_razyomy.jpg` | Корпус сзади с кабелями и разъёмами |
+| `Photo/09_korpus_speredi_knopki.jpg` | Корпус спереди: кнопки вкл/выкл, M, ♫ |
+| `Photo/10_razyomy_torec.jpg` | Торец: гнездо питания DC и 3-пиновый разъём ленты |
 
 ## Подключение (схема — `korona-esp32h2-schema.svg`)
 
