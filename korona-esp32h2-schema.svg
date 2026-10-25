@@ -34,26 +34,15 @@
   <line x1="520" y1="400" x2="580" y2="400" stroke="#f4a261" stroke-width="4"/>
   <circle cx="550" cy="400" r="4" fill="#f4a261"/>
 
-  <!-- +5V branch up and over to level shifter VCC -->
-  <line x1="550" y1="400" x2="550" y2="250" stroke="#f4a261" stroke-width="3"/>
-  <line x1="550" y1="250" x2="990" y2="250" stroke="#f4a261" stroke-width="3"/>
-  <line x1="990" y1="250" x2="990" y2="340" stroke="#f4a261" stroke-width="3"/>
-
   <!-- ESP32 GND -->
   <line x1="650" y1="510" x2="650" y2="940" stroke="#8d99ae" stroke-width="3"/>
   <circle cx="650" cy="940" r="4" fill="#8d99ae"/>
 
   <!-- ESP32 GPIO -> resistor -->
   <line x1="790" y1="460" x2="805" y2="460" stroke="#4caf50" stroke-width="4"/>
-  <!-- resistor -> level shifter IN -->
-  <line x1="875" y1="460" x2="900" y2="460" stroke="#4caf50" stroke-width="4"/>
 
-  <!-- Level shifter GND -->
-  <line x1="990" y1="510" x2="990" y2="940" stroke="#8d99ae" stroke-width="3"/>
-  <circle cx="990" cy="940" r="4" fill="#8d99ae"/>
-
-  <!-- Level shifter OUT -> strip DATA -->
-  <line x1="1110" y1="460" x2="1250" y2="460" stroke="#4caf50" stroke-width="4"/>
+  <!-- Resistor -> strip DATA (напрямую, без шифтера) -->
+  <line x1="875" y1="460" x2="1250" y2="460" stroke="#4caf50" stroke-width="4"/>
 
   <!-- Strip stubs -->
   <line x1="1330" y1="200" x2="1330" y2="310" stroke="#e63946" stroke-width="4"/>
@@ -87,23 +76,14 @@
   <rect x="580" y="340" width="210" height="170" rx="12" fill="#2a1b3a" stroke="#9b6bd6" stroke-width="2"/>
   <text x="685" y="400" text-anchor="middle" font-size="17" fill="#eaeaea" font-weight="bold">ESP32-H2</text>
   <text x="685" y="422" text-anchor="middle" font-size="16" fill="#eaeaea" font-weight="bold">SuperMini</text>
-  <text x="685" y="450" text-anchor="middle" font-size="12" fill="#c9b8e8">прошивка: esp-zigbee-sdk</text>
-  <text x="685" y="468" text-anchor="middle" font-size="12" fill="#c9b8e8">(пресеты цветов внутри)</text>
-  <text x="685" y="490" text-anchor="middle" font-size="11" fill="#9aa4b2">GPIO2 → DATA (3.3V)</text>
+  <text x="685" y="450" text-anchor="middle" font-size="12" fill="#c9b8e8">прошивка: arduino-esp32 Zigbee</text>
+  <text x="685" y="468" text-anchor="middle" font-size="12" fill="#c9b8e8">(лампа + эффекты)</text>
+  <text x="685" y="490" text-anchor="middle" font-size="11" fill="#9aa4b2">GPIO0 → DATA (3.3V)</text>
 
   <!-- 4. Резистор -->
   <rect x="805" y="440" width="70" height="40" rx="6" fill="#4a3a14" stroke="#d4a017" stroke-width="2"/>
   <text x="840" y="457" text-anchor="middle" font-size="11" fill="#f0d98a" font-weight="bold">R</text>
   <text x="840" y="472" text-anchor="middle" font-size="10" fill="#f0d98a">330 Ом</text>
-
-  <!-- 5. Level shifter -->
-  <rect x="900" y="340" width="210" height="170" rx="12" fill="#3a2a1b" stroke="#d69b4a" stroke-width="2"/>
-  <text x="1005" y="380" text-anchor="middle" font-size="15" fill="#eaeaea" font-weight="bold">Преобразователь</text>
-  <text x="1005" y="400" text-anchor="middle" font-size="15" fill="#eaeaea" font-weight="bold">уровня 3.3V→5V</text>
-  <text x="1005" y="424" text-anchor="middle" font-size="12" fill="#f0d0a0">74AHCT125</text>
-  <text x="1005" y="448" text-anchor="middle" font-size="11" fill="#9aa4b2">(если лента не</text>
-  <text x="1005" y="463" text-anchor="middle" font-size="11" fill="#9aa4b2">видит 3.3V сигнал —</text>
-  <text x="1005" y="478" text-anchor="middle" font-size="11" fill="#9aa4b2">без него тоже пробуй)</text>
 
   <!-- 6. ARGB лента -->
   <rect x="1250" y="310" width="220" height="260" rx="12" fill="#3a1b2a" stroke="#e63959" stroke-width="2"/>
@@ -137,21 +117,17 @@
   <text x="470" y="717" text-anchor="middle" font-size="13" fill="#c3cbd8">GND</text>
 
   <!-- +5V line label -->
-  <rect x="578" y="312" width="66" height="20" rx="3" fill="#000000" fill-opacity="0.55"/>
-  <text x="611" y="327" text-anchor="middle" font-size="13" fill="#ffc48a">+5V</text>
+  <rect x="521" y="368" width="58" height="20" rx="3" fill="#000000" fill-opacity="0.55"/>
+  <text x="550" y="383" text-anchor="middle" font-size="13" fill="#ffc48a">+5V</text>
 
   <!-- ESP32 GND -->
   <rect x="620" y="712" width="60" height="20" rx="3" fill="#000000" fill-opacity="0.55"/>
   <text x="650" y="727" text-anchor="middle" font-size="13" fill="#c3cbd8">GND</text>
 
-  <!-- Level shifter GND -->
-  <rect x="960" y="712" width="60" height="20" rx="3" fill="#000000" fill-opacity="0.55"/>
-  <text x="990" y="727" text-anchor="middle" font-size="13" fill="#c3cbd8">GND</text>
-
   <!-- DATA between shifter and strip -->
-  <rect x="1113" y="424" width="134" height="34" rx="4" fill="#000000" fill-opacity="0.6"/>
-  <text x="1180" y="438" text-anchor="middle" font-size="12" fill="#9be89f">DATA, 5V</text>
-  <text x="1180" y="453" text-anchor="middle" font-size="11" fill="#9aa4b2">(зелёный провод ленты)</text>
+  <rect x="978" y="424" width="134" height="34" rx="4" fill="#000000" fill-opacity="0.6"/>
+  <text x="1045" y="438" text-anchor="middle" font-size="12" fill="#9be89f">DATA, 3.3V</text>
+  <text x="1045" y="453" text-anchor="middle" font-size="11" fill="#9aa4b2">(зелёный провод ленты)</text>
 
   <!-- Strip +12V -->
   <rect x="1272" y="222" width="116" height="34" rx="4" fill="#000000" fill-opacity="0.6"/>
@@ -190,7 +166,7 @@
   <rect x="330" y="1025" width="26" height="18" rx="4" fill="#2a1b3a" stroke="#9b6bd6" stroke-width="2"/>
   <text x="366" y="1039" font-size="13" fill="#eaeaea">— нужно купить</text>
 
-  <text x="90" y="1075" font-size="13" fill="#9aa4b2">Резистор и преобразователь уровня — сначала попробуй без резистора и без шифтера (часто и так работает на коротких проводах).</text>
-  <text x="90" y="1093" font-size="13" fill="#9aa4b2">Если лента мигает / первый пиксель врёт цвет — добавляй резистор 330 Ом, затем шифтер уровня.</text>
+  <text x="90" y="1075" font-size="13" fill="#9aa4b2">Шифтер уровня не нужен: на ARGB-хабе лента работает от 3.3 В напрямую. DATA тяни вместе с GND с того же разъёма.</text>
+  <text x="90" y="1093" font-size="13" fill="#9aa4b2">Если лента мигает / первый пиксель врёт цвет — проверь резистор 330 Ом на DATA и общую землю платы и ленты.</text>
 
 </svg>
